@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ps-next-base
+spec:
+  selector:
+    matchLabels:
+      app: ps-next-base
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: ps-next-base
+    spec:
+      containers:
+        - name: ps-next-base
+          image: gcr.io/psuedocoin/ps-next-base:0.0.0
+          env:
+            - name: ENV
+              value: 'dev'
